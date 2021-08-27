@@ -1,11 +1,12 @@
 const addButton = document.querySelector('.addButton');
+// const editButton = document.querySelector('.editButton');
 const dateElement = document.getElementById("date");
 var input = document.querySelector('.input');
 const container = document.querySelector('.container');
 
-let options = {weekday:'long',month:'short',day:'numeric'};
+let options = { weekday: 'long', month: 'short', day: 'numeric' };
 let today = new Date();
-dateElement.innerHTML = today.toLocaleDateString("en-US",options);
+dateElement.innerHTML = today.toLocaleDateString("en-US", options);
 //div with class item
 class item {
     constructor(itemName) {
@@ -34,27 +35,38 @@ class item {
         removeButton.innerHTML = 'X';
         removeButton.classList.add('removeButton');
 
-        
+        let editButton = document.createElement('button');
+        editButton.innerHTML = '<i class="fas fa-edit"></i>';
+        editButton.classList.add('editButton');
+
+
 
 
         container.appendChild(itemBox);
         itemBox.appendChild(checkbox);
         itemBox.appendChild(label);
-        // itemBox.appendChild(editButton);
+        itemBox.appendChild(editButton);
         itemBox.appendChild(removeButton);
-        
+
 
         // editButton.addEventListener('click', () => this.edit(label.innerHTML));
-      
+
         removeButton.addEventListener('click', () => this.remove(itemBox));
-        
+
+        function change() {
+
+            label.innerHTML = prompt('enter new task');
+
+        }
+        editButton.addEventListener('click', change);
+
 
     }
 
     // edit(x) {
     //     var x = window.prompt("Enter new task");
     //     if (x != null) {
-            
+
     //     }
     // }
     remove(item) {
@@ -76,4 +88,6 @@ window.addEventListener('keydown', (e) => {
         check();
     }
 })
+
+
 
